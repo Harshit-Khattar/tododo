@@ -39,14 +39,6 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     ink: 'text-ongoing-dot',
     empty: 'Nothing started.',
   },
-  completed: {
-    label: 'Completed',
-    surface: 'bg-completed-surface',
-    chip: 'bg-completed-chip',
-    dot: 'bg-completed-dot',
-    ink: 'text-completed-dot',
-    empty: 'Nothing finished yet.',
-  },
 }
 
 export const STATUS_ORDER = Object.keys(STATUSES) as TaskStatus[]

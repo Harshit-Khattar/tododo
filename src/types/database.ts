@@ -1,4 +1,4 @@
-export type TaskStatus = 'urgent' | 'planned' | 'ongoing' | 'completed'
+export type TaskStatus = 'urgent' | 'planned' | 'ongoing'
 
 export type Task = {
   id: string

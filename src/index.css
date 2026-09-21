@@ -35,9 +35,6 @@
 
   --color-notes-surface: #eef0f1;
 
-  --color-completed-surface: #e7efe7;
-  --color-completed-dot: #5d8a63;
-  --color-completed-chip: #d5e4d5;
 }
 
 @layer base {

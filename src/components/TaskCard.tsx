@@ -47,14 +47,14 @@ export function TaskCardBody({ task }: { task: Task }) {
         ))}
       </div>
 
-      {task.due_date && <DueDate value={task.due_date} done={task.status === 'completed'} />}
+      {task.due_date && <DueDate value={task.due_date} />}
     </article>
   )
 }
 
-function DueDate({ value, done }: { value: string; done: boolean }) {
+function DueDate({ value }: { value: string }) {
   const date = new Date(`${value}T00:00:00`)
-  const overdue = !done && isBefore(date, startOfToday())
+  const overdue = isBefore(date, startOfToday())
 
   return (
     <time
