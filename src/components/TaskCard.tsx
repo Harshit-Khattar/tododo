@@ -4,6 +4,7 @@ import { format, isBefore, startOfToday } from 'date-fns'
 
 import { StatusChip } from '@/components/StatusChip'
 import { TagChip } from '@/components/TagChip'
+import { STATUSES } from '@/lib/statuses'
 import { cn } from '@/lib/utils'
 import type { Task } from '@/types/database'
 
@@ -34,8 +35,9 @@ export function TaskCardBody({ task }: { task: Task }) {
       className={cn(
         'cursor-pointer rounded-md border border-border/70 bg-background p-3',
         'shadow-[0_1px_1px_rgba(36,40,44,0.04),0_2px_4px_-2px_rgba(36,40,44,0.08)]',
-        'transition-shadow duration-150',
+        'transition-[background-color,box-shadow] duration-150',
         'hover:shadow-[0_1px_1px_rgba(36,40,44,0.05),0_4px_10px_-3px_rgba(36,40,44,0.14)]',
+        STATUSES[task.status].hoverSurface,
       )}
     >
       <h3 className="text-[15.5px] font-medium leading-[1.45] text-foreground">{task.title}</h3>

@@ -4,6 +4,8 @@ interface StatusConfig {
   label: string
   /** Column background tint. */
   surface: string
+  /** Same tint on a card, on hover — literal so Tailwind can see it. */
+  hoverSurface: string
   /** Status chip background. */
   chip: string
   /** Leading dot colour. */
@@ -18,6 +20,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
   urgent: {
     label: 'Urgent',
     surface: 'bg-urgent-surface',
+    hoverSurface: 'hover:bg-urgent-surface',
     chip: 'bg-urgent-chip',
     dot: 'bg-urgent-dot',
     ink: 'text-urgent-dot',
@@ -26,6 +29,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
   planned: {
     label: 'Planned',
     surface: 'bg-planned-surface',
+    hoverSurface: 'hover:bg-planned-surface',
     chip: 'bg-planned-chip',
     dot: 'bg-planned-dot',
     ink: 'text-planned-dot',
@@ -34,6 +38,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
   ongoing: {
     label: 'Ongoing',
     surface: 'bg-ongoing-surface',
+    hoverSurface: 'hover:bg-ongoing-surface',
     chip: 'bg-ongoing-chip',
     dot: 'bg-ongoing-dot',
     ink: 'text-ongoing-dot',
