@@ -49,6 +49,13 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Tailwind v4's preflight drops the pointer cursor from buttons. Restore it
+     once here rather than per component. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
   /* Tabular figures keep column counts and dates from shifting width. */
   time,
   [data-numeric] {
