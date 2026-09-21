@@ -3,6 +3,7 @@ import { useEffect, useState, type KeyboardEvent } from 'react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { useAutoGrow } from '@/hooks/useAutoGrow'
+import { linkify } from '@/lib/linkify'
 import { NOTE_COLORS, NOTE_COLOR_ORDER } from '@/lib/noteColors'
 import { cn } from '@/lib/utils'
 import type { Note, NoteColor } from '@/types/database'
@@ -16,6 +17,7 @@ interface NoteRowProps {
 
 export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
   const [draft, setDraft] = useState(note.content)
+  const [editing, setEditing] = useState(false)
   const textarea = useAutoGrow(draft)
 
   // Accept content arriving from elsewhere (realtime, another tab) unless the
@@ -25,6 +27,7 @@ export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
   }, [note.content, textarea])
 
   function commit() {
+    setEditing(false)
     if (draft !== note.content) onPatch({ content: draft })
   }
 
@@ -39,6 +42,13 @@ export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
     }
   }
 
+  const textStyles = cn(
+    'min-w-0 flex-1 bg-transparent text-[15px] leading-[1.5]',
+    NOTE_COLORS[note.color].text,
+    note.bold && 'font-semibold',
+    note.done && 'text-muted-foreground line-through',
+  )
+
   return (
     <div className="group flex items-start gap-2 rounded-md px-1.5 py-1 transition-colors hover:bg-background/60">
       <input
@@ -49,22 +59,40 @@ export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
         aria-label={note.content || 'Untitled item'}
       />
 
-      <textarea
-        ref={textarea}
-        rows={1}
-        value={draft}
-        onChange={(event) => setDraft(event.target.value)}
-        onBlur={commit}
-        onKeyDown={handleKeyDown}
-        placeholder="Empty"
-        className={cn(
-          'min-w-0 flex-1 resize-none bg-transparent text-[15px] leading-[1.5] outline-none',
-          'placeholder:text-muted-foreground/50',
-          NOTE_COLORS[note.color].text,
-          note.bold && 'font-semibold',
-          note.done && 'text-muted-foreground line-through',
-        )}
-      />
+      {editing ? (
+        <textarea
+          ref={textarea}
+          autoFocus
+          rows={1}
+          value={draft}
+          onChange={(event) => setDraft(event.target.value)}
+          onBlur={commit}
+          onKeyDown={handleKeyDown}
+          placeholder="Empty"
+          className={cn(textStyles, 'resize-none outline-none placeholder:text-muted-foreground/50')}
+        />
+      ) : (
+        // Links are only clickable out of edit mode; a click anywhere else
+        // drops into the textarea, where the raw URL is editable as text.
+        <div
+          role="textbox"
+          tabIndex={0}
+          onClick={() => setEditing(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault()
+              setEditing(true)
+            }
+          }}
+          className={cn(
+            textStyles,
+            'min-h-[1.5em] cursor-text whitespace-pre-wrap break-words outline-none',
+            !draft && 'text-muted-foreground/50',
+          )}
+        >
+          {draft ? linkify(draft) : 'Empty'}
+        </div>
+      )}
 
       <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity focus-within:opacity-100 group-hover:opacity-100">
         <RowButton
