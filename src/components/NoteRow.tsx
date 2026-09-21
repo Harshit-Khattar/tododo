@@ -1,7 +1,8 @@
 import { Bold, Palette, Trash2 } from 'lucide-react'
-import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useState, type KeyboardEvent } from 'react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { useAutoGrow } from '@/hooks/useAutoGrow'
 import { NOTE_COLORS, NOTE_COLOR_ORDER } from '@/lib/noteColors'
 import { cn } from '@/lib/utils'
 import type { Note, NoteColor } from '@/types/database'
@@ -15,20 +16,13 @@ interface NoteRowProps {
 
 export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
   const [draft, setDraft] = useState(note.content)
-  const textarea = useRef<HTMLTextAreaElement>(null)
+  const textarea = useAutoGrow(draft)
 
   // Accept content arriving from elsewhere (realtime, another tab) unless the
   // row is being typed in.
   useEffect(() => {
     if (document.activeElement !== textarea.current) setDraft(note.content)
-  }, [note.content])
-
-  useLayoutEffect(() => {
-    const el = textarea.current
-    if (!el) return
-    el.style.height = 'auto'
-    el.style.height = `${el.scrollHeight}px`
-  }, [draft])
+  }, [note.content, textarea])
 
   function commit() {
     if (draft !== note.content) onPatch({ content: draft })

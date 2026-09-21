@@ -1,5 +1,6 @@
-import { Plus } from 'lucide-react'
+import { useRef } from 'react'
 
+import { NoteComposer } from '@/components/NoteComposer'
 import { NoteRow } from '@/components/NoteRow'
 import { useCreateNote, useDeleteNote, useNotes, useUpdateNote } from '@/hooks/useNotes'
 import { positionAt } from '@/lib/position'
@@ -13,12 +14,12 @@ export function Notepad() {
   const createNote = useCreateNote()
   const updateNote = useUpdateNote()
   const deleteNote = useDeleteNote()
+  const composer = useRef<HTMLTextAreaElement>(null)
 
-  const addNote = () => createNote.mutate({ content: '', position: positionAt(notes, notes.length) })
   const remaining = notes.filter((note) => !note.done).length
 
   return (
-    <section className="flex w-[21rem] shrink-0 flex-col gap-1 rounded-[10px] border border-border/60 bg-notes-surface p-2">
+    <section className="flex w-[21rem] shrink-0 flex-col gap-1 rounded-[10px] border border-border/60 bg-notes-surface p-2 pb-3">
       <header className="flex items-center gap-2 px-1 pb-0.5 pt-1">
         <span className="inline-flex items-center gap-1.5 rounded-[3px] bg-planned-chip px-1.5 py-[3px] text-[12px] font-medium leading-none">
           <span className="size-[5px] rounded-full bg-planned-dot" />
@@ -29,32 +30,24 @@ export function Notepad() {
         </span>
       </header>
 
-      <div className="flex min-h-10 flex-col">
+      <div className="flex flex-col">
         {notes.map((note) => (
           <NoteRow
             key={note.id}
             note={note}
             onPatch={(patch) => updateNote.mutate({ id: note.id, ...patch })}
             onDelete={() => deleteNote.mutate(note.id)}
-            onEnter={addNote}
+            onEnter={() => composer.current?.focus()}
           />
         ))}
+
+        <NoteComposer
+          textareaRef={composer}
+          onCreate={(content) =>
+            createNote.mutate({ content, position: positionAt(notes, notes.length) })
+          }
+        />
       </div>
-
-      {notes.length === 0 && (
-        <p className="px-3 py-2 text-[13.5px] text-muted-foreground/75">
-          A blank page. Jot anything down.
-        </p>
-      )}
-
-      <button
-        type="button"
-        onClick={addNote}
-        className="flex items-center gap-1.5 rounded-md px-3 py-2 text-[13.5px] font-medium text-planned-dot opacity-65 transition-opacity hover:opacity-100 focus-visible:opacity-100"
-      >
-        <Plus className="size-3.5" />
-        New item
-      </button>
     </section>
   )
 }
