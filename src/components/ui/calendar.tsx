@@ -9,7 +9,7 @@ export function Calendar({ className, ...props }: React.ComponentProps<typeof Da
     <DayPicker
       className={cn('text-sm [--rdp-accent-color:var(--color-accent)]', className)}
       classNames={{
-        day_button: 'rounded-md hover:bg-muted',
+        day_button: 'cursor-pointer rounded-md hover:bg-muted',
         today: 'font-semibold text-accent',
       }}
       components={{
