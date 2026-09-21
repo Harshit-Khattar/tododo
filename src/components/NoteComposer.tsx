@@ -49,7 +49,7 @@ export function NoteComposer({ onCreate, textareaRef }: NoteComposerProps) {
         onBlur={commit}
         placeholder="Add an item"
         aria-label="Add an item"
-        className="min-w-0 flex-1 resize-none bg-transparent text-[14px] leading-[1.5] outline-none placeholder:text-muted-foreground/60"
+        className="min-w-0 flex-1 resize-none bg-transparent text-[15px] leading-[1.5] outline-none placeholder:text-muted-foreground/60"
       />
     </div>
   )

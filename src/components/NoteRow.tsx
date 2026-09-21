@@ -58,7 +58,7 @@ export function NoteRow({ note, onPatch, onDelete, onEnter }: NoteRowProps) {
         onKeyDown={handleKeyDown}
         placeholder="Empty"
         className={cn(
-          'min-w-0 flex-1 resize-none bg-transparent text-[14px] leading-[1.5] outline-none',
+          'min-w-0 flex-1 resize-none bg-transparent text-[15px] leading-[1.5] outline-none',
           'placeholder:text-muted-foreground/50',
           NOTE_COLORS[note.color].text,
           note.bold && 'font-semibold',
