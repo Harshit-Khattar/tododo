@@ -38,7 +38,7 @@ export function TaskCardBody({ task }: { task: Task }) {
         'hover:shadow-[0_1px_1px_rgba(36,40,44,0.05),0_4px_10px_-3px_rgba(36,40,44,0.14)]',
       )}
     >
-      <h3 className="text-[14.5px] leading-[1.45] text-foreground">{task.title}</h3>
+      <h3 className="text-[15.5px] leading-[1.45] text-foreground">{task.title}</h3>
 
       <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
         <StatusChip status={task.status} />
@@ -60,7 +60,7 @@ function DueDate({ value, done }: { value: string; done: boolean }) {
     <time
       dateTime={value}
       className={cn(
-        'mt-2 block text-[12px] leading-none',
+        'mt-2 block text-[12.5px] leading-none',
         overdue ? 'font-medium text-urgent-dot' : 'text-muted-foreground',
       )}
     >

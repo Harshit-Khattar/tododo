@@ -7,7 +7,7 @@ export function TagChip({ tag, onRemove }: { tag: string; onRemove?: () => void 
     <span
       className={cn(
         'inline-flex items-center gap-1 rounded-[3px] border border-border px-1.5 py-[3px]',
-        'text-[11.5px] leading-none text-muted-foreground',
+        'text-[12px] leading-none text-muted-foreground',
       )}
     >
       {tag}

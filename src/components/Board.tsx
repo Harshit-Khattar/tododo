@@ -70,7 +70,7 @@ export function Board() {
         onDragCancel={() => setActiveId(null)}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex gap-4 overflow-x-auto px-10 pb-12">
+        <div className="flex items-start gap-4 overflow-x-auto px-10 pb-12">
           {STATUS_ORDER.map((status) => (
             <Column
               key={status}

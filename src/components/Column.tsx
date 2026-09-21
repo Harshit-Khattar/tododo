@@ -31,13 +31,13 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
     >
       <header className="flex items-center gap-2 px-1 pb-0.5 pt-1">
         <StatusChip status={status} />
-        <span data-numeric className="text-[12px] text-muted-foreground">
+        <span data-numeric className="text-[12.5px] text-muted-foreground">
           {tasks.length}
         </span>
       </header>
 
       <SortableContext items={tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
-        <div className="flex flex-col gap-2">
+        <div className="flex min-h-10 flex-col gap-2">
           {tasks.map((task) => (
             <TaskCard key={task.id} task={task} onOpen={onOpen} />
           ))}
@@ -45,7 +45,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
       </SortableContext>
 
       {tasks.length === 0 && (
-        <p className="px-3 py-2 text-[13px] text-muted-foreground/75">
+        <p className="px-3 py-2 text-[13.5px] text-muted-foreground/75">
           {empty}
         </p>
       )}
@@ -54,7 +54,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
         type="button"
         onClick={() => onNew(status)}
         className={cn(
-          'flex items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium',
+          'flex items-center gap-1.5 rounded-md px-3 py-2 text-[13.5px] font-medium',
           'opacity-65 transition-opacity duration-150 hover:opacity-100',
           'focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-1',
           action,
