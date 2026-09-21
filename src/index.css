@@ -2,16 +2,14 @@
 
 @theme {
   --font-sans: 'IBM Plex Sans', ui-sans-serif, -apple-system, 'Segoe UI', sans-serif;
-  --font-serif: 'Source Serif 4', ui-serif, Georgia, serif;
 
-  /* Paper ground, white cards. The board sits on the page, not in it. */
-  --color-paper: #edefec;
+  /* Light neutral ground, white cards. The board sits on the page, not in it. */
+  --color-paper: #f4f5f3;
   --color-background: #ffffff;
   --color-foreground: #24282c;
   --color-muted: #f1f2ef;
   --color-muted-foreground: #6e7479;
   --color-border: #dfe2de;
-  --color-rule: rgba(36, 40, 44, 0.04);
   --color-accent: #35688f;
 
   --color-urgent-surface: #fbe9e5;
@@ -37,12 +35,7 @@
   }
 
   body {
-    /* 24px rule grid — the substrate the cards rest on, not decoration. */
     background-color: var(--color-paper);
-    background-image:
-      linear-gradient(to right, var(--color-rule) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-rule) 1px, transparent 1px);
-    background-size: 24px 24px;
     @apply text-foreground font-sans antialiased;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;

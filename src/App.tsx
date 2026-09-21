@@ -12,7 +12,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <main className="min-h-dvh pt-12 pb-16">
         <header className="px-10 pb-8">
-          <h1 className="font-serif text-[38px] font-semibold leading-none tracking-[-0.01em]">
+          <h1 className="text-[34px] font-semibold leading-none tracking-[-0.02em]">
             Tododo
           </h1>
         </header>

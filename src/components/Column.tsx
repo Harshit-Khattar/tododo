@@ -45,7 +45,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
       </SortableContext>
 
       {tasks.length === 0 && (
-        <p className="px-3 py-2 font-serif text-[13.5px] italic text-muted-foreground/80">
+        <p className="px-3 py-2 text-[13px] text-muted-foreground/75">
           {empty}
         </p>
       )}
