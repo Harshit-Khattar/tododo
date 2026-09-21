@@ -17,7 +17,7 @@ interface ColumnProps {
 
 export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
   const { setNodeRef, isOver } = useDroppable({ id: status, data: { status } })
-  const { surface, action, empty } = STATUSES[status]
+  const { surface, ink, empty } = STATUSES[status]
 
   return (
     <section
@@ -31,7 +31,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
     >
       <header className="flex items-center gap-2 px-1 pb-0.5 pt-1">
         <StatusChip status={status} />
-        <span data-numeric className="text-[12.5px] text-muted-foreground">
+        <span data-numeric className={cn('text-[12.5px] font-medium', ink)}>
           {tasks.length}
         </span>
       </header>
@@ -57,7 +57,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
           'flex items-center gap-1.5 rounded-md px-3 py-2 text-[13.5px] font-medium',
           'opacity-65 transition-opacity duration-150 hover:opacity-100',
           'focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-1',
-          action,
+          ink,
         )}
       >
         <Plus className="size-3.5" />

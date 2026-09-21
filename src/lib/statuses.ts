@@ -8,8 +8,8 @@ interface StatusConfig {
   chip: string
   /** Leading dot colour. */
   dot: string
-  /** "New task" affordance text colour. */
-  action: string
+  /** Status colour as text — used by the count and the "New task" affordance. */
+  ink: string
   /** Shown when the column has nothing in it. */
   empty: string
 }
@@ -20,7 +20,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     surface: 'bg-urgent-surface',
     chip: 'bg-urgent-chip',
     dot: 'bg-urgent-dot',
-    action: 'text-urgent-dot',
+    ink: 'text-urgent-dot',
     empty: 'Nothing on fire.',
   },
   planned: {
@@ -28,7 +28,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     surface: 'bg-planned-surface',
     chip: 'bg-planned-chip',
     dot: 'bg-planned-dot',
-    action: 'text-planned-dot',
+    ink: 'text-planned-dot',
     empty: 'Nothing queued up.',
   },
   ongoing: {
@@ -36,7 +36,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     surface: 'bg-ongoing-surface',
     chip: 'bg-ongoing-chip',
     dot: 'bg-ongoing-dot',
-    action: 'text-ongoing-dot',
+    ink: 'text-ongoing-dot',
     empty: 'Nothing started.',
   },
   completed: {
@@ -44,7 +44,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     surface: 'bg-completed-surface',
     chip: 'bg-completed-chip',
     dot: 'bg-completed-dot',
-    action: 'text-completed-dot',
+    ink: 'text-completed-dot',
     empty: 'Nothing finished yet.',
   },
 }
