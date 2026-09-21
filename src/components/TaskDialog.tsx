@@ -105,7 +105,7 @@ export function TaskDialog({ task, status, open, onOpenChange, nextPosition }: T
             onChange={(event) => patch('title', event.target.value)}
             onKeyDown={(event) => event.key === 'Enter' && handleSubmit()}
             placeholder="Task name"
-            className="h-auto rounded-none border-x-0 border-t-0 px-0 pb-2 text-xl font-semibold"
+            className="h-auto rounded-none border-x-0 border-t-0 px-0 pb-2 font-serif text-[22px] font-semibold"
           />
 
           <div className="grid grid-cols-[6rem_1fr] items-center gap-x-4 gap-y-3 text-sm">

@@ -30,10 +30,17 @@ export function TaskCard({ task, onOpen }: { task: Task; onOpen: (task: Task) =>
 /** Presentational card — also used inside the drag overlay. */
 export function TaskCardBody({ task }: { task: Task }) {
   return (
-    <article className="cursor-pointer space-y-2 rounded-lg border border-border bg-background p-3 shadow-[0_1px_2px_rgba(15,15,15,0.06)] transition-shadow hover:shadow-[0_2px_6px_rgba(15,15,15,0.12)]">
-      <h3 className="text-sm font-medium leading-snug">{task.title}</h3>
+    <article
+      className={cn(
+        'cursor-pointer rounded-md border border-border/70 bg-background p-3',
+        'shadow-[0_1px_1px_rgba(36,40,44,0.04),0_2px_4px_-2px_rgba(36,40,44,0.08)]',
+        'transition-shadow duration-150',
+        'hover:shadow-[0_1px_1px_rgba(36,40,44,0.05),0_4px_10px_-3px_rgba(36,40,44,0.14)]',
+      )}
+    >
+      <h3 className="font-serif text-[15px] leading-[1.4] text-foreground">{task.title}</h3>
 
-      <div className="flex flex-wrap items-center gap-1.5">
+      <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
         <StatusChip status={task.status} />
         {task.tags.map((tag) => (
           <TagChip key={tag} tag={tag} />
@@ -50,8 +57,14 @@ function DueDate({ value, done }: { value: string; done: boolean }) {
   const overdue = !done && isBefore(date, startOfToday())
 
   return (
-    <p className={cn('text-xs', overdue ? 'text-urgent-dot' : 'text-muted-foreground')}>
-      {format(date, 'MMMM d, yyyy')}
-    </p>
+    <time
+      dateTime={value}
+      className={cn(
+        'mt-2 block text-[12px] leading-none',
+        overdue ? 'font-medium text-urgent-dot' : 'text-muted-foreground',
+      )}
+    >
+      {format(date, 'MMM d, yyyy')}
+    </time>
   )
 }

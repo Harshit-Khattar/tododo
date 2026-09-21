@@ -8,8 +8,10 @@ interface StatusConfig {
   chip: string
   /** Leading dot colour. */
   dot: string
-  /** "New" affordance text colour. */
+  /** "New task" affordance text colour. */
   action: string
+  /** Shown when the column has nothing in it. */
+  empty: string
 }
 
 export const STATUSES: Record<TaskStatus, StatusConfig> = {
@@ -19,6 +21,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     chip: 'bg-urgent-chip',
     dot: 'bg-urgent-dot',
     action: 'text-urgent-dot',
+    empty: 'Nothing on fire.',
   },
   planned: {
     label: 'Planned',
@@ -26,6 +29,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     chip: 'bg-planned-chip',
     dot: 'bg-planned-dot',
     action: 'text-planned-dot',
+    empty: 'Nothing queued up.',
   },
   ongoing: {
     label: 'Ongoing',
@@ -33,6 +37,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     chip: 'bg-ongoing-chip',
     dot: 'bg-ongoing-dot',
     action: 'text-ongoing-dot',
+    empty: 'Nothing started.',
   },
   completed: {
     label: 'Completed',
@@ -40,6 +45,7 @@ export const STATUSES: Record<TaskStatus, StatusConfig> = {
     chip: 'bg-completed-chip',
     dot: 'bg-completed-dot',
     action: 'text-completed-dot',
+    empty: 'Nothing finished yet.',
   },
 }
 

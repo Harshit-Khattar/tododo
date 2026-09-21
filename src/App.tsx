@@ -10,8 +10,12 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-dvh py-10">
-        <h1 className="px-10 pb-6 text-4xl font-bold tracking-tight">Tododo</h1>
+      <main className="min-h-dvh pt-12 pb-16">
+        <header className="px-10 pb-8">
+          <h1 className="font-serif text-[38px] font-semibold leading-none tracking-[-0.01em]">
+            Tododo
+          </h1>
+        </header>
         <Board />
       </main>
       <Toaster position="bottom-right" />

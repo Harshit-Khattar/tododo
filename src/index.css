@@ -1,32 +1,34 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans:
-    ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', ui-serif, Georgia, serif;
 
+  /* Paper ground, white cards. The board sits on the page, not in it. */
+  --color-paper: #edefec;
   --color-background: #ffffff;
-  --color-foreground: #37352f;
-  --color-muted: #f7f6f3;
-  --color-muted-foreground: #787774;
-  --color-border: #e9e9e7;
-  --color-accent: #2383e2;
+  --color-foreground: #24282c;
+  --color-muted: #f1f2ef;
+  --color-muted-foreground: #6e7479;
+  --color-border: #dfe2de;
+  --color-rule: rgba(36, 40, 44, 0.04);
+  --color-accent: #35688f;
 
-  /* Notion status palette: surface tint + chip tint + dot */
-  --color-urgent-surface: #fdf0ee;
-  --color-urgent-chip: #ffe2dd;
-  --color-urgent-dot: #e16259;
+  --color-urgent-surface: #fbe9e5;
+  --color-urgent-chip: #f5d6ce;
+  --color-urgent-dot: #c4553f;
 
-  --color-planned-surface: #f8f8f7;
-  --color-planned-chip: #e3e2e0;
-  --color-planned-dot: #91918e;
+  --color-planned-surface: #eceeea;
+  --color-planned-chip: #dee1da;
+  --color-planned-dot: #7d837c;
 
-  --color-ongoing-surface: #f0f5fb;
-  --color-ongoing-chip: #d3e5ef;
-  --color-ongoing-dot: #529cca;
+  --color-ongoing-surface: #e6eef4;
+  --color-ongoing-chip: #d2e1ec;
+  --color-ongoing-dot: #4a7fa5;
 
-  --color-completed-surface: #f1f7f4;
-  --color-completed-chip: #dbeddb;
-  --color-completed-dot: #6c9b7d;
+  --color-completed-surface: #e7efe7;
+  --color-completed-dot: #5d8a63;
+  --color-completed-chip: #d5e4d5;
 }
 
 @layer base {
@@ -35,7 +37,20 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    /* 24px rule grid — the substrate the cards rest on, not decoration. */
+    background-color: var(--color-paper);
+    background-image:
+      linear-gradient(to right, var(--color-rule) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-rule) 1px, transparent 1px);
+    background-size: 24px 24px;
+    @apply text-foreground font-sans antialiased;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tabular figures keep column counts and dates from shifting width. */
+  time,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
   }
 }

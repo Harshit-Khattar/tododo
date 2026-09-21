@@ -8,12 +8,12 @@ export function StatusChip({ status, className }: { status: TaskStatus; classNam
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1.5 rounded-[3px] px-1.5 py-[3px] text-[11.5px] font-medium leading-none',
         chip,
         className,
       )}
     >
-      <span className={cn('size-1.5 rounded-full', dot)} />
+      <span className={cn('size-[5px] rounded-full', dot)} />
       {label}
     </span>
   )
