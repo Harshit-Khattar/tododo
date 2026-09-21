@@ -60,8 +60,10 @@ function DueDate({ value, done }: { value: string; done: boolean }) {
     <time
       dateTime={value}
       className={cn(
-        'mt-2 block text-[12.5px] leading-none',
-        overdue ? 'font-medium text-urgent-dot' : 'text-muted-foreground',
+        'mt-2 inline-block text-[12.5px] leading-none',
+        overdue
+          ? 'rounded-[3px] bg-urgent-chip px-1.5 py-1 font-medium text-urgent-dot'
+          : 'text-muted-foreground',
       )}
     >
       {format(date, 'MMM d, yyyy')}
