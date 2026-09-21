@@ -23,7 +23,7 @@ export function Column({ status, tasks, onOpen, onNew }: ColumnProps) {
     <section
       ref={setNodeRef}
       className={cn(
-        'flex w-[19rem] shrink-0 flex-col gap-2 rounded-[10px] border border-border/60 p-2',
+        'flex w-[17.5rem] shrink-0 flex-col gap-2 rounded-[10px] border border-border/60 p-2',
         'transition-shadow duration-150',
         surface,
         isOver && 'border-accent/40 shadow-[inset_0_0_0_1px_var(--color-accent)]',

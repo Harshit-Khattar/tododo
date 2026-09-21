@@ -24,6 +24,16 @@
   --color-ongoing-chip: #d2e1ec;
   --color-ongoing-dot: #4a7fa5;
 
+  /* Note text. Darkened off the pure hues so yellow and orange survive white. */
+  --color-note-red: #c0392f;
+  --color-note-orange: #b0631c;
+  --color-note-yellow: #8a6d0b;
+  --color-note-green: #3f7d4a;
+  --color-note-blue: #2f6f9e;
+  --color-note-purple: #7a4fa3;
+
+  --color-notes-surface: #eef0f1;
+
   --color-completed-surface: #e7efe7;
   --color-completed-dot: #5d8a63;
   --color-completed-chip: #d5e4d5;

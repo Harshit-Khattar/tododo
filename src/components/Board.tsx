@@ -11,6 +11,7 @@ import {
 import { useMemo, useState } from 'react'
 
 import { Column } from '@/components/Column'
+import { Notepad } from '@/components/Notepad'
 import { TaskCardBody } from '@/components/TaskCard'
 import { TaskDialog } from '@/components/TaskDialog'
 import { useTasks, useUpdateTask } from '@/hooks/useTasks'
@@ -71,6 +72,7 @@ export function Board() {
         onDragEnd={handleDragEnd}
       >
         <div className="flex items-start gap-4 overflow-x-auto px-10 pb-12">
+          <Notepad />
           {STATUS_ORDER.map((status) => (
             <Column
               key={status}
